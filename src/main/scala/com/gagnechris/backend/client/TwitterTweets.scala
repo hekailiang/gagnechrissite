@@ -31,6 +31,7 @@ object TwitterTweets {
     import com.gagnechris.backend.model.TwitterJsonProtocol._
     import SprayJsonSupport._
 
+    // Improve to deserialize error?  https://groups.google.com/forum/#!topic/spray-user/N6RGjXLGC-Q/discussion
     val pipeline: HttpRequest => Future[List[Tweet]] = (
       addHeader("Authorization", s"Bearer $bearerToken")
       ~> encode(Gzip)

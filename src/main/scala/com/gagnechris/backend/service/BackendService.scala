@@ -42,10 +42,8 @@ trait BackendService extends HttpService with SprayJsonSupport {
   }
 
   def blogRoute: Route = getPath("BlogPosts" / IntNumber) { blogId =>
-    get {
-      complete {
-        s"BlogPost - Get Blog Post ${blogId}"
-      }
+    complete {
+      s"BlogPost - Get Blog Post ${blogId}"
     }
   }
 

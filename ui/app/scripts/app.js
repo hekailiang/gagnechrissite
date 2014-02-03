@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('uiApp', [
+angular.module('siteApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
@@ -9,8 +9,12 @@ angular.module('uiApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/githubView.html',
+        controller: 'GithubController'
+      })
+      .when('/github', {
+        templateUrl: 'views/githubView.html',
+        controller: 'GithubController'
       })
       .otherwise({
         redirectTo: '/'

@@ -65,13 +65,58 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
+      proxies: [
+        {
+          context: '/api/GithubRepos',
+          host: 'localhost',
+          port: 8080,
+          https: false,
+          changeOrigin: false,
+          xforward: false
+        },
+        {
+          context: '/api/LinkedInProfile',
+          host: 'localhost',
+          port: 8080,
+          https: false,
+          changeOrigin: false,
+          xforward: false
+        },
+        {
+          context: '/api/TwitterTweets',
+          host: 'localhost',
+          port: 8080,
+          https: false,
+          changeOrigin: false,
+          xforward: false
+        }
+      ],
       livereload: {
         options: {
           open: true,
           base: [
             '.tmp',
             '<%= yeoman.app %>'
-          ]
+          ],
+          middleware: function (connect, options) {
+                      var middlewares = [];
+                      var directory = options.directory || options.base[options.base.length - 1];
+                      if (!Array.isArray(options.base)) {
+                        options.base = [options.base];
+                      }
+                      options.base.forEach(function(base) {
+                          // Serve static files.
+                        middlewares.push(connect.static(base));
+                      });
+
+                      // Setup the proxy
+                      middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+
+                      // Make directory browse-able.
+                      middlewares.push(connect.directory(directory));
+
+                      return middlewares;
+                    }
         }
       },
       test: {
@@ -360,6 +405,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'configureProxies',
       'bower-install',
       'concurrent:server',
       'autoprefixer',
@@ -403,4 +449,7 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.loadNpmTasks('grunt-connect-proxy');
+
 };

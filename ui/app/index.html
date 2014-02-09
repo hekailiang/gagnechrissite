@@ -25,7 +25,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div ui-view class="container"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -51,15 +51,21 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/blogController.js"></script>
         <script src="scripts/controllers/githubController.js"></script>
+        <script src="scripts/controllers/twitterController.js"></script>
+        <script src="scripts/controllers/linkedInController.js"></script>
+        <script src="scripts/services/blogService.js"></script>
         <script src="scripts/services/githubService.js"></script>
+        <script src="scripts/services/linkedInService.js"></script>
+        <script src="scripts/services/twitterService.js"></script>
         <!-- endbuild -->
 </body>
 </html>

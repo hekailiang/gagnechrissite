@@ -42,8 +42,37 @@ trait BackendService extends HttpService with SprayJsonSupport {
   }
 
   def blogRoute: Route = getPath("BlogPosts" / IntNumber) { blogId =>
-    complete {
-      s"BlogPost - Get Blog Post ${blogId}"
+    import com.gagnechris.backend.model.BlogJsonProtocol._
+
+    cache(cache30min) {
+      onComplete(BlogPosts.blogPost(blogId)) {
+        case Success(blogPost) => {
+          respondWithStatus(OK) {
+            complete(blogPost.toJson.toString)
+          }
+        }
+        case Failure(ex) => {
+          val errorMsg = ex.getMessage
+          complete(InternalServerError, s"blogRoute Error: $errorMsg")
+        }
+      }
+    }
+  } ~
+  getPath("BlogPosts") {
+    import com.gagnechris.backend.model.BlogJsonProtocol._
+
+    cache(cache30min) {
+      onComplete(BlogPosts.blogPosts) {
+        case Success(blogPosts) => {
+          respondWithStatus(OK) {
+            complete(blogPosts.toJson.toString)
+          }
+        }
+        case Failure(ex) => {
+          val errorMsg = ex.getMessage
+          complete(InternalServerError, s"blogRoute Error: $errorMsg")
+        }
+      }
     }
   }
 

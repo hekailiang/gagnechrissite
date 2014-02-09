@@ -11,15 +11,12 @@
 </div>
 
 <div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
+  <div ui-view="blogView" class="row marketing"></div>
+  <div ui-view="githubView" class="row marketing"></div>
+  <div ui-view="twitterView" class="row marketing"></div>
+  <div ui-view="linkedInView" class="row marketing"></div>
   <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
 </div>
-
-<div ng-view class="row marketing"></div>
 
 <div class="footer">
   <p>♥ from the Yeoman team</p>

@@ -23,6 +23,13 @@ object BackendConfig {
     lazy val Port = httpConfig.getInt("port")
   }
 
+  object BlogConfig {
+    private val blogConfig = config.getConfig("blog")
+    lazy val url = blogConfig.getString("url")
+    lazy val blogType = blogConfig.getString("type")
+    lazy val wordpressSite = blogConfig.getString("wordpress-site")
+  }
+
   object TwitterConfig {
     private val twitterConfig = config.getConfig("twitter")
     lazy val url = twitterConfig.getString("url")

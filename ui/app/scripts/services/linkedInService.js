@@ -3,9 +3,9 @@
 angular.module('siteApp')
   .service('linkedInService', function ($http) {
     this.getLinkedInProfile = function() {
-      $http.get('http://localhost:8080/api/LinkedInProfile').
-      success(function(data) {
-        return data;
+      var promise = $http.get('/api/LinkedInProfile').then(function (response) {
+        return response.data;
       });
-    };
+      return promise;
+    }
   });

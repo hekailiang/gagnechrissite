@@ -3,9 +3,9 @@
 angular.module('siteApp')
   .service('twitterService', function ($http) {
     this.getTwitterTweets = function() {
-      $http.get('http://localhost:8080/api/TwitterTweets').
-      success(function(data) {
-        return data;
+      var promise = $http.get('/api/TwitterTweets').then(function (response) {
+        return response.data;
       });
-    };
+      return promise;
+    }
   });

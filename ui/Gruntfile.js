@@ -67,7 +67,26 @@ module.exports = function (grunt) {
       },
       proxies: [
         {
+          context: '/api/BlogPosts',
+          host: 'localhost',
+          port: 8080,
+          https: false,
+          changeOrigin: false,
+          xforward: false,
+        },
+        {
           context: '/api/GithubRepos',
+          host: 'localhost',
+          port: 8080,
+          https: false,
+          changeOrigin: false,
+          xforward: false,
+          headers: {
+              "Access-Control-Allow-Origin": "*"
+          }
+        },
+        {
+          context: '/api/GithubAuthCode',
           host: 'localhost',
           port: 8080,
           https: false,
@@ -76,6 +95,17 @@ module.exports = function (grunt) {
         },
         {
           context: '/api/LinkedInProfile',
+          host: 'localhost',
+          port: 8080,
+          https: false,
+          changeOrigin: false,
+          xforward: false,
+          headers: {
+              "Access-Control-Allow-Origin": "*"
+          }
+        },
+        {
+          context: '/api/LinkedInAuthCode',
           host: 'localhost',
           port: 8080,
           https: false,

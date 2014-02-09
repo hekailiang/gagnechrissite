@@ -4,19 +4,59 @@ angular.module('siteApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ui.router'
 ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/githubView.html',
-        controller: 'GithubController'
+  .config(function ($urlRouterProvider, $stateProvider) {
+    $urlRouterProvider
+      .otherwise('/');
+
+    $stateProvider
+      .state('home', {
+        abstract: true,
+        views: {
+          '': {
+            templateUrl: 'views/main.html'
+          }
+        }
       })
-      .when('/github', {
-        templateUrl: 'views/githubView.html',
-        controller: 'GithubController'
+      .state('blogDetail', {
+        url: '/',
+        parent: 'home',
+        views: {
+          'blogView': {
+            templateUrl: 'views/blogView.html',
+            controller: 'BlogController'
+          }
+        }
       })
-      .otherwise({
-        redirectTo: '/'
+      .state('githubDetail', {
+        url: '/github',
+        parent: 'home',
+        views: {
+          'githubView': {
+            templateUrl: 'views/githubView.html',
+            controller: 'GithubController'
+          }
+        }
+      })
+      .state('twitterDetail', {
+        url: '/twitter',
+        parent: 'home',
+        views: {
+          'twitterView': {
+            templateUrl: 'views/twitterView.html',
+            controller: 'TwitterController'
+          }
+        }
+      })
+      .state('linkedInDetail', {
+        url: '/linkedIn',
+        parent: 'home',
+        views: {
+          'linkedInView': {
+            templateUrl: 'views/linkedInView.html',
+            controller: 'LinkedInController'
+          }
+        }
       });
   });

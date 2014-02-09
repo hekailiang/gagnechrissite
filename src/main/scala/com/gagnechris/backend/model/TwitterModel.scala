@@ -15,11 +15,3 @@ object TwitterJsonProtocol extends DefaultJsonProtocol {
   implicit val TwitterUserFormat = jsonFormat11(TwitterUser)
   implicit val TweetFormat = jsonFormat4(Tweet)
 }
-
-
-// +      val jsonUnmarshaller: Unmarshaller[Person] = jsonFormat1(Person)
-//  +      val xmlUnmarshaller: Unmarshaller[Person] = Unmarshaller.delegate[NodeSeq, Person](`text/xml`) { seq ⇒
-//  +        Person(seq.text)
-//  +      }
-//  +
-//  +      implicit val unmarshaller = Unmarshaller.oneOf[Person](jsonUnmarshaller, xmlUnmarshaller)

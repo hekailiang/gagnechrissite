@@ -45,7 +45,7 @@ trait BackendService extends HttpService with SprayJsonSupport {
     import com.gagnechris.backend.model.BlogJsonProtocol._
 
     cache(cache30min) {
-      onComplete(BlogPosts.blogPost(blogId)) {
+      onComplete(Blog.blogPost(blogId)) {
         case Success(blogPost) => {
           respondWithStatus(OK) {
             complete(blogPost.toJson.toString)
@@ -62,7 +62,7 @@ trait BackendService extends HttpService with SprayJsonSupport {
     import com.gagnechris.backend.model.BlogJsonProtocol._
 
     cache(cache30min) {
-      onComplete(BlogPosts.blogPosts) {
+      onComplete(Blog.blogPosts) {
         case Success(blogPosts) => {
           respondWithStatus(OK) {
             complete(blogPosts.toJson.toString)

@@ -13,10 +13,10 @@ import spray.httpx.SprayJsonSupport
 import spray.httpx.unmarshalling.{MalformedContent, Unmarshaller, Deserialized}
 import spray.client.pipelining._
 
-import com.gagnechris.backend.model.{BlogPosts => BlogPostsModel, BlogPost, BlogAuthor}
+import com.gagnechris.backend.model.{BlogPosts, BlogPost, BlogAuthor}
 
 
-object BlogPosts {
+object Blog {
   import ExecutionContext.Implicits.global
   implicit val system = ActorSystem()
   import system.dispatcher // execution context for futures
@@ -26,15 +26,15 @@ object BlogPosts {
   val wordpressSite = BlogConfig.wordpressSite
   val baseUrl = BlogConfig.url
 
-  def blogPosts: Future[BlogPostsModel] = {
+  def blogPosts: Future[BlogPosts] = {
     import com.gagnechris.backend.model.BlogJsonProtocol._
     import SprayJsonSupport._
 
-    val pipeline: HttpRequest => Future[BlogPostsModel] = (
+    val pipeline: HttpRequest => Future[BlogPosts] = (
       encode(Gzip)
       ~> sendReceive
       ~> decode(Deflate)
-      ~> unmarshal[BlogPostsModel]
+      ~> unmarshal[BlogPosts]
     )
 
     pipeline {
@@ -42,15 +42,15 @@ object BlogPosts {
     }
   }
 
-  def blogPost(blogId: Int): Future[BlogPostsModel] = {
+  def blogPost(blogId: Int): Future[BlogPosts] = {
     import com.gagnechris.backend.model.BlogJsonProtocol._
     import SprayJsonSupport._
 
-    val pipeline: HttpRequest => Future[BlogPostsModel] = (
+    val pipeline: HttpRequest => Future[BlogPosts] = (
       encode(Gzip)
       ~> sendReceive
       ~> decode(Deflate)
-      ~> unmarshal[BlogPostsModel]
+      ~> unmarshal[BlogPosts]
     )
 
     pipeline {

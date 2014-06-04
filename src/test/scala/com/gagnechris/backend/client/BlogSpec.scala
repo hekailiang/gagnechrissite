@@ -10,20 +10,22 @@ import org.scalatest.concurrent.Timeouts._
 import spray.http.StatusCodes._
 
 
-class BlogPostsSpec extends FreeSpec with Matchers with ScalaFutures {
-  "The Blog Posts" - {
-    "when calling BlogPosts.blogPosts" - {
-      val blogResponse = BlogPosts.blogPosts()
+class BlogSpec extends FreeSpec with Matchers with ScalaFutures {
+  "The Blog " - {
+    "when calling Blog.blogPosts" - {
+      val blogResponse = Blog.blogPosts
 
-      whenReady(blogResponse, timeout(Span(6, Seconds))) { blogPosts =>
+      whenReady(blogResponse, timeout(Span(6, Seconds))) { res =>
+        val posts = res.posts.get
+
         "should return blogs" in {
-          blogPosts.size should be > 0
+          posts.length should be > 0
         }
         "first blog should have content" in {
-          blogPosts(0).content.isEmpty should be(false)
+          posts(0).content.isEmpty should be(false)
         }
         "first blog should have author" in {
-          blogPosts(0).author.isEmpty should be(false)
+          posts(0).author.isEmpty should be(false)
         }
       }
     }

@@ -12,27 +12,23 @@
       <li><a ng-href="#/github">Github</a></li>
       <li><a ng-href="#/twitter">Twitter</a></li>
       <li><a ng-href="#/linkedIn">Linked In</a></li>
-      <li><a ng-href="#">Aboutsssss</a></li>
+      <li><a ng-href="#">About</a></li>
       <li><a href="mailto:gagnechris@me.com?subject=">Contact</a></li>
     </ul>
   </nav>
 </header>
 
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#/github">Github</a></li>
-    <li><a ng-href="#/twitter">Twitter</a></li>
-    <li><a ng-href="#/linkedIn">Linked In</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">Chris Gagne</h3>
+<div class="mobile-nav">
+  <span class="nav-btn" id="mobile-nav-btn">
+    <span class="nav-btn-bar"></span>
+    <span class="nav-btn-bar"></span>
+    <span class="nav-btn-bar"></span>
+  </span>
+  <h3><a href="/">gagnechris.com</a></h3>
 </div>
 
-<div class="jumbotron">
-  <div ui-view="blogView" class="row marketing"></div>
-  <div ui-view="githubView" class="row marketing"></div>
-  <div ui-view="twitterView" class="row marketing"></div>
-  <div ui-view="linkedInView" class="row marketing"></div>
+<div ng-controller="BlogController">
+  <section class="main-section blog-section" id="blog-posts">
+    <div ng-repeat="post in blog.posts" ng-bind-html="post.content"></div>
+  </section>
 </div>

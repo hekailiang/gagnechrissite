@@ -12,22 +12,8 @@ angular.module('siteApp', [
 
     $stateProvider
       .state('home', {
-        abstract: true,
-        views: {
-          '': {
-            templateUrl: 'views/main.html'
-          }
-        }
-      })
-      .state('blogDetail', {
-        url: '/',
-        parent: 'home',
-        views: {
-          'blogView': {
-            templateUrl: 'views/blogView.html',
-            controller: 'BlogController'
-          }
-        }
+        url:'/',
+        templateUrl: 'views/main.html',
       })
       .state('githubDetail', {
         url: '/github',

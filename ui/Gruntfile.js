@@ -80,10 +80,7 @@ module.exports = function (grunt) {
           port: 8080,
           https: false,
           changeOrigin: false,
-          xforward: false,
-          headers: {
-              "Access-Control-Allow-Origin": "*"
-          }
+          xforward: false
         },
         {
           context: '/api/GithubAuthCode',
@@ -99,10 +96,7 @@ module.exports = function (grunt) {
           port: 8080,
           https: false,
           changeOrigin: false,
-          xforward: false,
-          headers: {
-              "Access-Control-Allow-Origin": "*"
-          }
+          xforward: false
         },
         {
           context: '/api/LinkedInAuthCode',

@@ -7,5 +7,5 @@ angular.module('siteApp')
         return response.data;
       });
       return promise;
-    }
+    };
   });

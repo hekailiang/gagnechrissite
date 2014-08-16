@@ -17,7 +17,6 @@ import com.gagnechris.backend.model.{Tweet, TwitterUser}
 
 
 object TwitterTweets {
-  import ExecutionContext.Implicits.global
   implicit val system = ActorSystem()
   import system.dispatcher // execution context for futures
 

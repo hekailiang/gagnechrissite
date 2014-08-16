@@ -28,5 +28,13 @@ class BackendServiceSpec extends FreeSpec with ScalatestRouteTest with BackendSe
         }
       }
     }
+    "when calling GET api/GithubRepos for first time" - {
+      "should return OK" in {
+        Get("/api/GithubRepos") ~> apiRoute ~> check {
+          status should equal(OK)
+        }
+      }
+    }
+
   }
 }

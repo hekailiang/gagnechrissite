@@ -27,8 +27,22 @@
   <h3><a href="/">gagnechris.com</a></h3>
 </div>
 
-<div ng-controller="BlogController">
-  <section class="main-section blog-section" id="blog-posts">
-    <div ng-repeat="post in blog.posts" ng-bind-html="post.content"></div>
-  </section>
-</div>
+<section id="blog-posts" class="main-section blog-section" ng-controller="BlogController">
+  <article id="{{post.ID}}" ng-repeat="post in blog.posts">
+    <hgroup>
+      <h2>
+        <a href="/post/{{post.ID}}">{{post.title}}</a>
+      </h2>
+      <h3>
+        <a href="#{{post.ID}}" class="adjusted" style="margin-top: -140px;">{{post.modified | date : 'EEEE, MMMM d, y'}}</a>
+      </h3>
+    </hgroup>
+    <div ng-bind-html="post.content"></div>
+  </article>
+</section>
+
+<article id="menu-item-modal">
+  <div id="searchResultDetailModal" class="minHeight600" style="">
+    <div class="simplemodal-container" style=""></div>
+  </div>
+</article>

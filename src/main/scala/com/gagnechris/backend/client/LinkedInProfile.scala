@@ -18,7 +18,6 @@ import spray.client.pipelining._
 
 
 object LinkedInProfile {
-  import ExecutionContext.Implicits.global
   implicit val system = ActorSystem()
   import system.dispatcher // execution context for futures
 

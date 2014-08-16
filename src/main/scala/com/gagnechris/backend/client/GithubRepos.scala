@@ -18,7 +18,6 @@ import spray.client.pipelining._
 
 
 object GithubRepos {
-  import ExecutionContext.Implicits.global
   implicit val system = ActorSystem()
   import system.dispatcher // execution context for futures
 

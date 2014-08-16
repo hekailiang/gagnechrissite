@@ -20,7 +20,6 @@ import spray.http.MediaTypes.`application/json`
 
 
 case class GithubAccessToken() {
-  import ExecutionContext.Implicits.global
   implicit val system = ActorSystem()
   import system.dispatcher // execution context for futures
 

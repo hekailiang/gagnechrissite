@@ -17,7 +17,7 @@ libraryDependencies ++= {
     "io.spray" %% "spray-can" % sprayVersion,
     "io.spray" %% "spray-routing" % sprayVersion,
     "io.spray" %% "spray-caching" % sprayVersion,
-    "io.spray" %% "spray-testkit" % sprayVersion,
+    "io.spray" %% "spray-testkit" % sprayVersion % "test",
     "io.spray" %% "spray-client" % sprayVersion,
     "io.spray" %%  "spray-json" % "1.2.6",
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
@@ -25,6 +25,7 @@ libraryDependencies ++= {
     "com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test",
     "ch.qos.logback" % "logback-classic" % "1.1.2",
     "org.scalatest" %% "scalatest" % "2.2.1" % "test",
+    "org.mockito" % "mockito-all" % "1.9.5" % "test",
     "commons-codec" % "commons-codec" % "1.9"
   )
 }

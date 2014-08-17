@@ -15,8 +15,9 @@ import spray.client.pipelining._
 
 import com.gagnechris.backend.model.{Tweet, TwitterUser}
 
+object TwitterTweets extends TweetsService
 
-object TwitterTweets {
+trait TweetsService {
   implicit val system = ActorSystem()
   import system.dispatcher // execution context for futures
 
@@ -24,6 +25,8 @@ object TwitterTweets {
 
   val userName = TwitterConfig.userName
   val baseUrl = TwitterConfig.url
+
+  def sendAndReceive = sendReceive
 
   def tweets(bearerToken: String):  Future[List[Tweet]] = {
 
@@ -34,7 +37,7 @@ object TwitterTweets {
     val pipeline: HttpRequest => Future[List[Tweet]] = (
       addHeader("Authorization", s"Bearer $bearerToken")
       ~> encode(Gzip)
-      ~> sendReceive
+      ~> sendAndReceive
       ~> decode(Deflate)
       ~> unmarshal[List[Tweet]]
     )
